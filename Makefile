@@ -4,7 +4,8 @@ llcpImp.o: llcpImp.cpp llcpInt.h
 	g++ -Wall -ansi -pedantic -c llcpImp.cpp
 Assign06P1.o: Assign06P1.cpp llcpInt.h
 	g++ -Wall -ansi -pedantic -c Assign06P1.cpp
-
+debug: Assign06P1.cpp llcpImp.cpp
+	g++ -g Assign06P1.cpp llcpImp.cpp -o debug
 go:
 	./a6p1
 gogo:

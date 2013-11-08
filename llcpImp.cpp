@@ -244,13 +244,13 @@ void ListClear(Node*& headPtr, int noMsg)
 }
 
 // definition of SortedMergeRecur
-void SortedMergeRecur(Node* headX, Node* headY, Node* headZ)
+void SortedMergeRecur(Node*& headX, Node*& headY, Node*& headZ)
 {
    Node* temp = 0;
    if (headX == 0 && headY == 0)
       return;
-   if ((headX == 0 && headY != 0) || (headY->data < headX->data)
-        || (headY->data == headX->data))
+   if ((headX == 0 && headY != 0) || (headY != 0 && (headY->data < headX->data))
+        || (headY != 0 && (headY->data == headX->data)))
    {
       // traverse to the end of Z
       temp = headZ;
@@ -274,7 +274,7 @@ void SortedMergeRecur(Node* headX, Node* headY, Node* headZ)
          headZ->link = 0;
       }
    }
-   else if ((headX != 0 && headY == 0) || (headX->data < headY->data))
+   else //if ((headX != 0 && headY == 0) || (headX->data < headY->data))
    {
       // traverse to the end of Z
       temp = headZ;
