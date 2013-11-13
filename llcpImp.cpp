@@ -246,58 +246,20 @@ void ListClear(Node*& headPtr, int noMsg)
 // definition of SortedMergeRecur
 void SortedMergeRecur(Node*& headX, Node*& headY, Node*& headZ)
 {
-   Node* temp = 0;
    if (headX == 0 && headY == 0)
       return;
    if ((headX == 0 && headY != 0) || (headY != 0 && (headY->data < headX->data))
         || (headY != 0 && (headY->data == headX->data)))
    {
-      // traverse to the end of Z
-      temp = headZ;
-      if (temp != 0)
-      {
-         while(temp->link != 0)
-         {
-            temp = temp->link;
-         }
-         // make the first element in Y the last in Z
-         // temp now points to the last node in Z
-         temp->link = headY;  // last node in Z points to headY
-         headY = headY->link; // headY now points to next element/null
-         temp = temp->link;   // temp now points to new last element in Z
-         temp->link = 0;      // setting null
-      }
-      else
-      {
-         headZ = headY;
-         headY = headY->link;
-         headZ->link = 0;
-      }
+      headZ = headY;
+      headY = headY->link;
+      headZ->link = 0;
    }
-   else //if ((headX != 0 && headY == 0) || (headX->data < headY->data))
+   else
    {
-      // traverse to the end of Z
-      temp = headZ;
-      if (temp != 0)
-      {
-         while(temp->link != 0)
-         {
-            temp = temp->link;
-         }
-         // make the first element in X the last in Z
-         // temp now points to the last node in Z
-         temp->link = headX;  // last node in Z points to headX
-         headX = headX->link; // headX now points to next element/null
-         temp = temp->link;   // temp now points to new last element in Z
-         temp->link = 0;      // setting null
-      }
-      else
-      {
-         headZ = headX;
-         headX = headX->link;
-         headZ->link = 0;
-      }
+      headZ = headX;
+      headX = headX->link;
+      headZ->link = 0;
    }
-
-   SortedMergeRecur(headX, headY, headZ);
+   SortedMergeRecur(headX, headY, headZ->link);
 }
