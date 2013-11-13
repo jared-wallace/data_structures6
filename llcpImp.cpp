@@ -248,8 +248,7 @@ void SortedMergeRecur(Node*& headX, Node*& headY, Node*& headZ)
 {
    if (headX == 0 && headY == 0)
       return;
-   if ((headX == 0 && headY != 0) || (headY != 0 && (headY->data < headX->data))
-        || (headY != 0 && (headY->data == headX->data)))
+   if (headY != 0 && (headX == 0 || headY->data <= headX->data))
    {
       headZ = headY;
       headY = headY->link;
